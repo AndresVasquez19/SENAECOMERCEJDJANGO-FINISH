@@ -1,0 +1,64 @@
+{% extends 'base.html' %}  <!-- Extiende el template base.html -->
+{% load static %}  <!-- Carga los archivos estáticos -->
+{% block content %}  <!-- Inicio del bloque principal -->
+
+<!-- Encabezado -->
+<div class="py-5 text-center"><h2>{{titulo}}</h2></div>
+<!-- Tabla que muestra los productos del carrito -->
+<table class="table" style="width:90%">
+    <thead>
+        <tr>
+            <th>Cantidad</th>
+            <th></th>
+            <th>Producto</th>
+            <th>Precio Unit.</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for prod in carrito %}  <!-- Ciclo que itera sobre los productos del carrito -->
+        <tr>
+            <!-- Cantidad del producto con opción de modificar -->
+            <th><input type="number" name="cantidad" id="cantidad_{{prod.id}}" onchange="cambiarCantidad({{prod.id}})"
+                    value="{{prod.cantidad}}" min="1" style="width: 80px;" datapreciou="{{prod.valUnit}}"></th>
+            <!-- Imagen del producto -->
+            <td><img src="{{producto.imgPeque.url}}" alt="X"></td>
+            <!-- Nombre del producto -->
+            <td>{{ prod.nombre }}</td>
+            <!-- Precio unitario del producto -->
+            <td>{{ prod.valUnit }}/{{ prod.unidad }}</td>
+            <!-- Total de cada producto -->
+            <td id="total_{{prod.id}}">${{prod.total}}</td>
+            <!-- Opciones para eliminar o ver detalle del producto -->
+            <td>
+                <a href="{% url 'eliminar' prod.id %}" class="btn btn-danger btn-carrito">Eliminar</a>
+                <a href="{% url 'un_producto' prod.prodId %}" class="btn btn-info btncarrito">Detalle</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<!-- Sección de totales -->
+<div class="col-6 offset-4 row justify-content-center border-bottom">
+    <div class="col-6 text-end">
+        <h6><strong>Subtotal</strong></h6>
+        <h6>Iva</h6>
+        <h6>Envio</h6>
+        <h6><strong>A Pagar</strong></h6>
+    </div>
+    <div class="col-6 text-end">
+        <!-- Subtotal de los productos del carrito -->
+        <h6><strong id="subtotal">${{ subtotal }}</strong></h6>
+        <!-- IVA del subtotal -->
+        <h6 id="iva">${{ iva }}</h6>
+        <!-- Costo del envío -->
+        <h6 id="envio">${{ envio }}</h6>
+        <!-- Total a pagar por los productos del carrito -->
+        <h6><strong id="total">${{ total }}</strong></h6>
+    </div>
+    <!-- Botón para proceder al pago -->
+    <a href="{% url 'pagar' %}" class="btn btn-info btn-carrito">Pagar</a> 
+</div>
+<!-- Fin del bloque principal -->
+{% endblock %}

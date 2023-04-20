@@ -1,0 +1,34 @@
+{% extends 'base.html' %} <!-- Extiende la plantilla base.html-->
+
+{% block content %} <!-- Inicia el bloque de contenido de la plantilla que se agregará en la plantilla base.html -->
+<br> <!-- Salto de línea -->
+    <div class="mb-3 descripcion text-center"> <!-- Crea un div con clases CSS -->
+        <h2>{{titulo}}</h2> <!-- Muestra el título que se pasa desde la vista -->
+    </div>
+    
+    <div class="row"> <!-- Crea un div con clases CSS -->
+
+        <table class="table"> <!-- Crea una tabla con clase CSS -->
+            <thead> <!-- Inicia el encabezado de la tabla -->
+                <th></th> <!-- Crea una celda de encabezado vacía -->
+                <th>nombre</th> <!-- Crea una celda de encabezado con el texto "nombre" -->
+                <th>Descripción</th> <!-- Crea una celda de encabezado con el texto "Descripción" -->
+                <th>Precio</th> <!-- Crea una celda de encabezado con el texto "Precio" -->
+                <th>Existencia</th> <!-- Crea una celda de encabezado con el texto "Existencia" -->
+                <th></th>  <!-- Crea una celda de encabezado vacía -->
+            </thead>
+            <tbody> <!-- Inicia el cuerpo de la tabla -->
+                {% for prod in productos %} <!-- Inicia un bucle para iterar sobre la lista de productos que se pasa desde la vista -->
+                <tr> <!-- Inicia una fila de la tabla -->
+                    <td><img src="{{prod.imgPeque.url}}" alt="X"></td> <!-- Crea una celda con una imagen del producto -->
+                    <td>{{prod.nombre}}</td> <!-- Crea una celda con el nombre del producto -->
+                    <td>{{prod.descripcion}}</td> <!-- Crea una celda con la descripción del producto -->
+                    <td>{{prod.precioUnitario}}</td> <!-- Crea una celda con el precio unitario del producto -->
+                    <td>{{prod.existencia}}</td> <!-- Crea una celda con la cantidad de existencia del producto -->
+                    <td><a href="{% url 'un_producto' prod.id %}" type="button" class="btn btninfo">Ver detalle</a></td> <!-- Crea una celda con un botón para ver más detalles del producto -->
+                </tr>
+                {% endfor %} <!-- Cierra el bucle -->
+            </tbody>
+        </table> <!-- Cierra la tabla -->
+    </div> <!-- Cierra el div con clases CSS -->
+{% endblock %} <!-- Cierra el bloque de contenido de la plantilla --> 

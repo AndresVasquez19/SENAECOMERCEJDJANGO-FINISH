@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <title>Factura de compra</title>
+  <!-- Estilo CSS para la tabla de productos -->
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 80%;
+      border: none;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    tr:nth-child(even) {
+      background-color: #cebebe;
+    }
+    #totales {
+      width: 30%;
+    }
+  </style>
+</head>
+<body>
+  <!-- Encabezado de la factura -->
+  <h4>
+    Estimado {{ nombre }}:<br>
+    Gracias por su compra, a continuación se muestra la relación de productos a despachar:
+  </h4>
+  <br>
+  <!-- Tabla de productos -->
+  <table align="center" border="0" cellpadding="0" cellspacing="0" width="250" style="">
+    <tr>
+      <th>Cantidad</th>
+      <th>Producto</th>
+      <th>Precio Unit.</th>
+      <th>Total</th>
+    </tr>
+    {% for prod in carrito %}
+    <tr>
+      <td>{{ prod.cantidad }}</td>
+      <td>{{ prod.nombre }}</td>
+      <td>{{ prod.valUnit }}/{{ prod.unidad }}</td>
+      <td>${{ prod.total }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <br>
+  <!-- Tabla de totales -->
+  <div style="">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" id="totales">
+      <tr>
+        <th>Subtotal</th>
+        <td>${{ subtotal }}</td>
+      </tr>
+      <tr>
+        <th>IVA</th>
+        <td>${{ iva }}</td>
+      </tr>
+      <tr>
+        <th>Envío</th>
+        <td>${{ envio }}</td>
+      </tr>
+      <tr>
+        <th>A pagar</th>
+        <td>${{ total }}</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>
+

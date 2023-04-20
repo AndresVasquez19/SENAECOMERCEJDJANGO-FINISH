@@ -1,0 +1,114 @@
+<nav class="navbar bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icontabler-home" width="30"
+            height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            fill="none"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <polyline points="5 12 3 12 12 3 21 12 19 12"></polyline>
+            <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
+            <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
+            </svg>
+            </span>Inicio</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">     
+        {% if user.id is not None %}
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icontabler-square-asterisk"
+                    width="30" height="30" viewBox="0 0 24 24" stroke-width="2"
+                    stroke="currentColor"
+                    fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                    <path d="M12 8.5v7"></path>
+                    <path d="M9 10l6 4"></path>
+                    <path d="M9 14l6 -4"></path>
+                    </svg>
+                    </span>Cambiar contraseña
+                </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'carrito' %}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tablershopping-cart"
+                    width="30" height="30" viewBox="0 0 24 24" stroke-width="2"
+                    stroke="currentColor"
+                    fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <circle cx="6" cy="19" r="2"></circle>
+                    <circle cx="17" cy="19" r="2"></circle>
+                    <path d="M17 17h-11v-14h-2"></path>
+                    <path d="M6 5l14 1l-1 7h-13"></path>
+                </svg>carrito</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                categorias
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'categorias' %}">Categorias</a></li>
+                {% comment %} <li><a class="dropdown-item" href="">producto</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li> {% endcomment %}
+              </ul>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout'%}">
+                    <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icontabler-logout"
+                    width="30" height="30" viewBox="0 0 24 24" stroke-width="2"
+                    stroke="currentColor"
+                    fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2">
+                    </path>
+                    <path d="M7 12h14l-3 -3m0 6l3 -3"></path>
+                    </svg>
+                    </span>Salir
+                </a>
+              </li>
+              </li>              
+            {% else %} 
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %} ">
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icontabler-login"
+                    width="30" height="30" viewBox="0 0 24 24" stroke-width="2"
+                    stroke="currentColor"
+                    fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path
+                    d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2
+                    2 0 0 0 2 -2v-2">
+                  </path>
+                  <path d="M20 12h-13l3 -3m0 6l-3 -3"></path>
+              </svg>
+          </span>
+          Ingresar
+          </a>
+          </li> 
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'registro' %}">
+                <span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icontabler-user-plus"
+                width="30" height="30" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor"
+                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                <path d="M16 11h6m-3 -3v6"></path>
+                </svg>
+                </span>
+                Registrarse
+            </a>
+            </li>                
+        {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
